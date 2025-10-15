@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const successMessage = document.getElementById('form-success');
     const accordionHeaders = document.querySelectorAll('.accordion-header');
     
-    // --- NUEVO CÓDIGO PARA EL MENÚ HAMBURGUESA ---
+    // --- CÓDIGO PARA EL MENÚ HAMBURGUESA ---
     const hamburgerButton = document.getElementById('hamburger-button');
     const navLinks = document.getElementById('nav-links');
 
@@ -21,8 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburgerButton.classList.remove('active');
         }
     });
-    // --- FIN DEL NUEVO CÓDIGO ---
-
+    // --- FIN DEL CÓDIGO DEL MENÚ ---
 
     // Inicializar EmailJS con tu Public Key
     (function() {
@@ -65,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         });
     }
-
 
     accordionHeaders.forEach(header => {
         header.addEventListener('click', function() {
