@@ -28,10 +28,28 @@ body { font-family: var(--font-body); line-height: 1.7; background-color: var(--
 .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: var(--shadow); }
 .navbar .container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
 .logo img { height: 40px; }
+.nav-menu { display: flex; align-items: center; }
 .nav-links { list-style: none; display: flex; }
 .nav-links li { margin-left: 2.5rem; }
 .nav-links a { text-decoration: none; color: var(--color-dark); font-weight: 600; padding-bottom: 5px; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
 .nav-links a:hover { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+
+/* Estilos del Menú Hamburguesa */
+.hamburger {
+    display: none; /* Oculto por defecto */
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--color-dark);
+    transition: all 0.3s ease-in-out;
+}
 
 .hero-section {
     position: relative;
@@ -186,10 +204,43 @@ body { font-family: var(--font-body); line-height: 1.7; background-color: var(--
     .contact-form { grid-template-columns: 1fr; }
     .flow-diagram-cyclic { transform: scale(0.8); height: 400px; }
 }
+
 @media (max-width: 768px) {
-    .navbar .container { flex-direction: column; height: auto; padding: 15px 0; }
-    .nav-links { flex-wrap: wrap; justify-content: center; margin-top: 10px; }
-    .nav-links li { margin: 5px 15px; }
+    .navbar .container {
+        flex-wrap: wrap;
+    }
+    .hamburger {
+        display: block; /* Mostrar el botón en móvil */
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-links {
+        display: none; /* Ocultar el menú por defecto */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.95);
+        position: absolute;
+        top: 80px; /* Altura de la navbar */
+        left: 0;
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+    }
+    .nav-links.active {
+        display: flex; /* Mostrar el menú al hacer clic */
+    }
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
     .hero-text-content h1 { font-size: 2.8rem; }
     .section-title { font-size: 2.2rem; }
     .flow-diagram-cyclic { height: auto; display: flex; flex-direction: column; align-items: center; gap: 1rem; transform: none; }

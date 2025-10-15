@@ -10,16 +10,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-552BQBDF');</script>
+    </head>
 <body>
 
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-552BQBDF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header class="navbar">
         <div class="container">
             <a href="#hero" class="logo">
                 <img src="GrapeIQ_ok.png" alt="GrapeIQ Logo">
             </a>
-            <nav>
-                <ul class="nav-links">
+            <nav class="nav-menu">
+                <button class="hamburger" id="hamburger-button" aria-label="Abrir menú">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul class="nav-links" id="nav-links">
                     <li><a href="#about">Quiénes Somos</a></li>
                     <li><a href="#problema">El Reto</a></li>
                     <li><a href="#solucion">La Solución</a></li>
@@ -160,9 +173,9 @@
                 <h2 class="section-title">¿Listo para transformar tu bodega?</h2>
                 <p class="section-subtitle">Déjanos tu correo y te contactaremos para una demostración personalizada sin compromiso.</p>
                 <form id="contact-form" class="contact-form">
-                    <div class="form-group"><input type="text" name="name" placeholder="Tu Nombre" required></div>
-                    <div class="form-group"><input type="email" name="email" placeholder="Email de Contacto" required></div>
-                    <div class="form-group full-width"><textarea name="message" placeholder="Mensaje (Opcional)"></textarea></div>
+                    <div class="form-group"><input type="text" id="name" name="name" placeholder="Tu Nombre" required></div>
+                    <div class="form-group"><input type="email" id="email" name="email" placeholder="Email de Contacto" required></div>
+                    <div class="form-group full-width"><textarea id="message" name="message" placeholder="Mensaje (Opcional)"></textarea></div>
                     <div class="form-group full-width">
                         <button type="submit" class="animated-button">
                           <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
@@ -187,5 +200,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </body>
 </html>

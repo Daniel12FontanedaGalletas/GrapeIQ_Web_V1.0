@@ -4,6 +4,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
     const successMessage = document.getElementById('form-success');
     const accordionHeaders = document.querySelectorAll('.accordion-header');
+    
+    // --- NUEVO CÓDIGO PARA EL MENÚ HAMBURGUESA ---
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburgerButton.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburgerButton.classList.toggle('active');
+    });
+
+    // Cierra el menú al hacer clic en un enlace (para móviles)
+    navLinks.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            hamburgerButton.classList.remove('active');
+        }
+    });
+    // --- FIN DEL NUEVO CÓDIGO ---
+
+
+    // Inicializar EmailJS con tu Public Key
+    (function() {
+        // Sustituye las comillas por tu Public Key de EmailJS
+        emailjs.init("YOUR_PUBLIC_KEY"); 
+    })();
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -18,11 +43,29 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        contactForm.style.display = 'none';
-        successMessage.style.display = 'block';
-    });
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitButton = contactForm.querySelector('.animated-button .text');
+            submitButton.textContent = 'Enviando...';
+
+            // Envía el formulario usando EmailJS
+            // Sustituye las comillas por tu Service ID y Template ID
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+                .then(function() {
+                    // Éxito al enviar
+                    contactForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                }, function(error) {
+                    // Error al enviar
+                    console.log('FALLO EN EL ENVÍO...', error);
+                    submitButton.textContent = 'Enviar Solicitud'; // Restaura el texto del botón
+                    alert('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.');
+                });
+        });
+    }
+
 
     accordionHeaders.forEach(header => {
         header.addEventListener('click', function() {
