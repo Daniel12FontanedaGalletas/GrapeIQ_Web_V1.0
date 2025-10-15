@@ -36,12 +36,12 @@ body { font-family: var(--font-body); line-height: 1.7; background-color: var(--
 
 /* Estilos del Menú Hamburguesa */
 .hamburger {
-    display: none; /* Oculto por defecto */
+    display: none;
     cursor: pointer;
     background: none;
     border: none;
     padding: 0;
-    z-index: 1001; /* Para que esté por encima del menú desplegado */
+    z-index: 1001;
 }
 .hamburger .bar {
     display: block;
@@ -73,10 +73,10 @@ body { font-family: var(--font-body); line-height: 1.7; background-color: var(--
 }
 .hero-grid {
     z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
     gap: 2rem;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.25);
@@ -88,26 +88,24 @@ body { font-family: var(--font-body); line-height: 1.7; background-color: var(--
 }
 .hero-text-content h1 { font-family: var(--font-headings); font-size: 4rem; margin-bottom: 1rem; }
 .hero-text-content .subtitle { font-size: 1.2rem; max-width: 600px; margin: 0 auto 1.5rem auto; }
-.hero-buttons-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
-.hero-buttons-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 700px; width: 100%; }
-.hero-buttons-wrap a { text-decoration: none; }
-
-.button {
-    height: 50px;
-    width: 200px;
-    position: relative;
-    background-color: transparent;
-    cursor: pointer;
-    border: 2px solid var(--color-white);
-    overflow: hidden;
-    border-radius: 30px;
-    color: var(--color-white);
-    transition: all 0.5s ease-in-out;
+.hero-buttons-container { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 1.5rem; 
 }
-.btn-txt { z-index: 1; font-weight: 800; letter-spacing: 2px; position: relative; }
-.type1::after { content: ""; position: absolute; left: 0; top: 0; transition: all 0.5s ease-in-out; background-color: var(--color-secondary); border-radius: 30px; visibility: hidden; height: 10px; width: 10px; z-index: -1; }
-.button:hover { box-shadow: 1px 1px 100px rgba(255,255,255,0.2); color: var(--color-white); border-color: var(--color-secondary); }
-.type1:hover::after { visibility: visible; transform: scale(100) translateX(2px); }
+
+.pioneer-text {
+    font-size: 0.95rem;
+    max-width: 550px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+}
+.pioneer-text strong {
+    font-weight: 600;
+    color: var(--color-white);
+}
 
 .btn2 { position: relative; display: inline-block; padding: 15px 30px; border: 2px solid var(--color-accent); text-transform: uppercase; color: var(--color-accent); text-decoration: none; font-weight: 600; font-size: 20px; transition: 0.3s; background-color: transparent; cursor: pointer; }
 .btn2::before { content: ""; position: absolute; top: -2px; left: -2px; width: calc(100% + 4px); height: calc(100% + 4px); background-color: var(--color-primary); transition: 0.3s ease-out; transform: scaleY(1); z-index: 1; }
@@ -196,7 +194,6 @@ body { font-family: var(--font-body); line-height: 1.7; background-color: var(--
 .footer-links a { color: #adb5bd; text-decoration: none; margin: 0 1rem; transition: color 0.3s ease; }
 .footer-links a:hover { color: var(--color-white); }
 
-
 /* --- Responsive Design --- */
 
 @media (max-width: 992px) {
@@ -211,19 +208,17 @@ body { font-family: var(--font-body); line-height: 1.7; background-color: var(--
 }
 
 @media (max-width: 768px) {
-    /* --- AJUSTES GENERALES PARA MÓVIL --- */
     body {
-        padding-top: 80px; /* Evita que el contenido se oculte tras la navbar fija */
+        padding-top: 80px; 
     }
     .section-title { font-size: 2.2rem; }
     .section { padding: 60px 0; }
 
-    /* --- NAVEGACIÓN RESPONSIVE --- */
     .navbar .container {
         flex-wrap: wrap;
     }
     .hamburger {
-        display: block; /* Mostrar el botón en móvil */
+        display: block;
     }
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
@@ -254,31 +249,28 @@ body { font-family: var(--font-body); line-height: 1.7; background-color: var(--
         margin: 1rem 0;
     }
 
-    /* --- SECCIÓN HERO OPTIMIZADA --- */
     .hero-section {
-        height: 90vh; /* Reducir altura para mejor visualización */
+        height: 90vh;
     }
     .hero-grid {
-        padding: 2rem 1.5rem; /* Ajustar padding */
+        padding: 2rem 1.5rem;
         gap: 1.5rem;
     }
     .hero-text-content h1 { 
-        font-size: 2.5rem; /* Reducir tamaño del título */
+        font-size: 2.5rem; 
         line-height: 1.2;
     }
     .hero-text-content .subtitle {
         font-size: 1rem;
     }
-    /* Ocultar los botones redundantes en móvil */
-    .hero-buttons-wrap {
-        display: none;
+    .pioneer-text {
+        font-size: 0.9rem;
     }
     .btn2 {
         padding: 12px 24px;
         font-size: 16px;
     }
 
-    /* --- OTROS AJUSTES RESPONSIVE --- */
     .flow-diagram-cyclic { height: auto; display: flex; flex-direction: column; align-items: center; gap: 1rem; transform: none; }
     .flow-step-cyclic { position: static; transform: none !important; }
 }
