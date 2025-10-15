@@ -2,10 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
     const contactForm = document.getElementById('contact-form');
-    const successMessage = document.getElementById('form-success');
     const accordionHeaders = document.querySelectorAll('.accordion-header');
     
-    // --- CÓDIGO PARA EL MENÚ HAMBURGUESA ---
     const hamburgerButton = document.getElementById('hamburger-button');
     const navLinks = document.getElementById('nav-links');
 
@@ -14,19 +12,17 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburgerButton.classList.toggle('active');
     });
 
-    // Cierra el menú al hacer clic en un enlace (para móviles)
     navLinks.addEventListener('click', () => {
         if (navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
             hamburgerButton.classList.remove('active');
         }
     });
-    // --- FIN DEL CÓDIGO DEL MENÚ ---
 
-    // Inicializar EmailJS con tu Public Key
+    // --- CONFIGURACIÓN DE EMAILJS ---
     (function() {
-        // Sustituye las comillas por tu Public Key de EmailJS
-        emailjs.init("YOUR_PUBLIC_KEY"); 
+        // 1. Pega aquí tu Public Key de tu cuenta de EmailJS
+        emailjs.init("KEK0OVl_EV6Brp80t"); 
     })();
 
     const observer = new IntersectionObserver((entries) => {
@@ -48,18 +44,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const submitButton = contactForm.querySelector('.animated-button .text');
             submitButton.textContent = 'Enviando...';
+            
+            // 2. Pega aquí tu Service ID (el de tu servicio de Zoho Mail)
+            const serviceID = "zoho_service";
+            // 3. Pega aquí tu Template ID (el de la plantilla de notificación para ti)
+            const templateID = "template_df4frew";
 
-            // Envía el formulario usando EmailJS
-            // Sustituye las comillas por tu Service ID y Template ID
-            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            emailjs.sendForm(serviceID, templateID, this)
                 .then(function() {
-                    // Éxito al enviar
-                    contactForm.style.display = 'none';
-                    successMessage.style.display = 'block';
+                    // Éxito al enviar: redirige a la página de gracias.
+                    window.location.href = 'gracias.html';
                 }, function(error) {
                     // Error al enviar
                     console.log('FALLO EN EL ENVÍO...', error);
-                    submitButton.textContent = 'Enviar Solicitud'; // Restaura el texto del botón
+                    submitButton.textContent = 'Solicitar Información'; // Restaura el texto del botón
                     alert('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.');
                 });
         });
